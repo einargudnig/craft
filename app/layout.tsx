@@ -20,8 +20,8 @@ export default function RootLayout({
       <body className="antialiased mb-10 lg:mx-auto">
         <main className="container relative mx-auto mt-8 overflow-auto print:p-12">
           {children}
-          </main>
-        </body>
+        </main>
+      </body>
         </ThemeProvider>
     </html>
   );
