@@ -25,7 +25,7 @@ TabsList.displayName = TabsPrimitive.List.displayName;
 const TabsTrigger = React.forwardRef<
 	React.ElementRef<typeof TabsPrimitive.Trigger>,
 	React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
->(({ children, className, ...props }, ref) => (
+>(({ className, ...props }, ref) => (
 	<TabsPrimitive.Trigger
 		ref={ref}
 		className={cn(
@@ -33,11 +33,7 @@ const TabsTrigger = React.forwardRef<
 			className
 		)}
 		{...props}
-	>
-		<span data-active={props['data-state'] === 'active' ? true : undefined}>
-			{props['data-state'] === 'active' ? children : null}
-		</span>
-	</TabsPrimitive.Trigger>
+	/>
 ));
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
 

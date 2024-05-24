@@ -1,6 +1,7 @@
 import { ThemeToggle } from '@/components/theme-toggle';
 import { ComponentContainer } from '@/components/component-container';
 import { TabsComponent } from '@/components/tabs';
+import { RightSideDrawer } from '@/components/right-side-drawer';
 import Image from 'next/image';
 
 export default function Home() {
@@ -21,11 +22,12 @@ export default function Home() {
 							Where I can I will link to the tweet/original source
 						</p>
 					</div>
+
 					{/* <div className="mt-4">
-						<ComponentContainer />
+						<TabsComponent />
 					</div> */}
 					<div className="mt-4">
-						<TabsComponent />
+						<RightSideDrawer />
 					</div>
 				</div>
 			</div>
