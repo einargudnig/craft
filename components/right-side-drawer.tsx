@@ -127,7 +127,7 @@ export function RightSideDrawer() {
 							<div>
 								<div>
 									<Select>
-										<SelectTrigger className="w-[180px]">
+										<SelectTrigger>
 											<SelectValue placeholder="Select a fruit" />
 										</SelectTrigger>
 										<SelectContent>
@@ -143,7 +143,27 @@ export function RightSideDrawer() {
 									</Select>
 								</div>
 								<div>
-									<p>select task</p>
+									<div>
+										<Select>
+											<SelectTrigger>
+												<SelectValue placeholder="Select a fruit" />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectGroup>
+													<SelectLabel>Fruits</SelectLabel>
+													<SelectItem value="apple">Apple</SelectItem>
+													<SelectItem value="banana">Banana</SelectItem>
+													<SelectItem value="blueberry">
+														Blueberry
+													</SelectItem>
+													<SelectItem value="grapes">Grapes</SelectItem>
+													<SelectItem value="pineapple">
+														Pineapple
+													</SelectItem>
+												</SelectGroup>
+											</SelectContent>
+										</Select>
+									</div>
 								</div>
 							</div>
 						) : null}
