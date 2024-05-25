@@ -37,6 +37,69 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 
+const projects = [
+	{
+		id: 1,
+		name: 'project 1',
+		tasks: [
+			{
+				id: 1,
+				name: 'task 1'
+			},
+			{
+				id: 1,
+				name: 'task 1'
+			},
+			{ id: 1, name: 'task 1' }
+		]
+	},
+	{
+		id: 2,
+		name: 'project 2',
+		tasks: [
+			{
+				id: 1,
+				name: 'task 1'
+			},
+			{
+				id: 1,
+				name: 'task 1'
+			},
+			{ id: 1, name: 'task 1' }
+		]
+	},
+	{
+		id: 3,
+		name: 'project 2',
+		tasks: [
+			{
+				id: 1,
+				name: 'task 1'
+			},
+			{
+				id: 1,
+				name: 'task 1'
+			},
+			{ id: 1, name: 'task 1' }
+		]
+	},
+	{
+		id: 4,
+		name: 'project 3',
+		tasks: [
+			{
+				id: 1,
+				name: 'task 1'
+			},
+			{
+				id: 1,
+				name: 'task 1'
+			},
+			{ id: 1, name: 'task 1' }
+		]
+	}
+];
+
 export function RightSideDrawer() {
 	const [showData, setShowData] = useState(false);
 	const [isSuccess, setIsSuccess] = useState(false);
@@ -106,7 +169,7 @@ export function RightSideDrawer() {
 												User was found!
 											</p>
 											<p className="mt-2 text-sm">
-												You can add him to a project!
+												Start by selecting project below!
 											</p>
 										</div>
 									) : null}
@@ -128,21 +191,24 @@ export function RightSideDrawer() {
 								<div>
 									<Select>
 										<SelectTrigger>
-											<SelectValue placeholder="Select a fruit" />
+											<SelectValue placeholder="Select a project..." />
 										</SelectTrigger>
 										<SelectContent>
 											<SelectGroup>
-												<SelectLabel>Fruits</SelectLabel>
-												<SelectItem value="apple">Apple</SelectItem>
-												<SelectItem value="banana">Banana</SelectItem>
-												<SelectItem value="blueberry">Blueberry</SelectItem>
-												<SelectItem value="grapes">Grapes</SelectItem>
-												<SelectItem value="pineapple">Pineapple</SelectItem>
+												<SelectLabel>Projects</SelectLabel>
+												{projects.map((project, index) => (
+													<SelectItem
+														key={project.id}
+														value={project.name}
+													>
+														{project.name}
+													</SelectItem>
+												))}
 											</SelectGroup>
 										</SelectContent>
 									</Select>
 								</div>
-								<div>
+								{/* <div>
 									<div>
 										<Select>
 											<SelectTrigger>
@@ -164,7 +230,7 @@ export function RightSideDrawer() {
 											</SelectContent>
 										</Select>
 									</div>
-								</div>
+								</div> */}
 							</div>
 						) : null}
 					</SheetContent>
