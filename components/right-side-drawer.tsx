@@ -103,16 +103,19 @@ const projects = [
 export function RightSideDrawer() {
 	const [showData, setShowData] = useState(false);
 	const [isSuccess, setIsSuccess] = useState(false);
+	const [selectedProject, setSelectedProject] = useState('');
 	const allowUsers = ['einargudnig@gmail.com', 'user@example.com'];
 
 	const formSchema = z.object({
-		email: z.string()
+		email: z.string(),
+		selectedProject: z.string()
 	});
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			email: ''
+			email: '',
+			selectedProject: ''
 		}
 	});
 
@@ -187,27 +190,35 @@ export function RightSideDrawer() {
 							</form>
 						</Form>
 						{showData ? (
+							// Add to form!
 							<div>
-								<div>
-									<Select>
-										<SelectTrigger>
-											<SelectValue placeholder="Select a project..." />
-										</SelectTrigger>
-										<SelectContent>
-											<SelectGroup>
-												<SelectLabel>Projects</SelectLabel>
-												{projects.map((project, index) => (
-													<SelectItem
-														key={project.id}
-														value={project.name}
-													>
-														{project.name}
-													</SelectItem>
-												))}
-											</SelectGroup>
-										</SelectContent>
-									</Select>
-								</div>
+								<FormField
+									control={form.control}
+									mame="selectedProject"
+									render={({ field }) => (
+										<div>
+											<Select>
+												<SelectTrigger>
+													<SelectValue placeholder="Select a project..." />
+												</SelectTrigger>
+												<SelectContent>
+													<SelectGroup>
+														<SelectLabel>Projects</SelectLabel>
+														{projects.map((project, index) => (
+															<SelectItem
+																key={project.id}
+																value={project.name}
+															>
+																{project.name}
+															</SelectItem>
+														))}
+													</SelectGroup>
+												</SelectContent>
+											</Select>
+										</div>
+									)}
+								/>
+
 								{/* <div>
 									<div>
 										<Select>
