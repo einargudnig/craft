@@ -34,7 +34,7 @@ import {
 } from '@/components/ui/form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { Control, FieldValues, useForm } from 'react-hook-form';
 import { useState } from 'react';
 
 const projects = [
@@ -193,8 +193,8 @@ export function RightSideDrawer() {
 							// Add to form!
 							<div>
 								<FormField
-									control={form.control}
-									mame="selectedProject"
+									control={form.control as unknown as Control<FieldValues>}
+									name="selectedProject"
 									render={({ field }) => (
 										<div>
 											<Select>
@@ -207,6 +207,7 @@ export function RightSideDrawer() {
 														{projects.map((project, index) => (
 															<SelectItem
 																key={project.id}
+																{...field}
 																value={project.name}
 															>
 																{project.name}
