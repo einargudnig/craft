@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { ComponentContainer } from '@/components/component-container';
 
@@ -32,29 +33,43 @@ export default function Home() {
 					{/* <div className="mt-4">
 						<TabsComponent />
 					</div> */}
+					<div className="border border-1 rounded-md px-3 py-4">
+						<div>
+							<p className="text-xs">
+								All these components that are inside this border are from Emil
+								Kowalski{' '}
+								<Link href="https://animations.dev" className="underline">
+									Animations on the web
+								</Link>{' '}
+								course.
+							</p>
+						</div>
+
+						<div className="mt-4">
+							<FirstAnimation />
+						</div>
+						<div className="mt-4">
+							<LayoutAnimation />
+						</div>
+						<div className="mt-4">
+							<SharedLayoutAnimation />
+						</div>
+						<div className="mt-4">
+							<LoginLinkButton />
+						</div>
+						<div className="mt-4">
+							<FakeDrawer />
+						</div>
+						<div className="mt-4">
+							<DraggableBall />
+						</div>
+						<div className="mt-4">
+							<DraggableBall2 />
+						</div>
+					</div>
+
 					<div className="mt-4">
 						<RightSideDrawer />
-					</div>
-					<div className="mt-4">
-						<FirstAnimation />
-					</div>
-					<div className="mt-4">
-						<LayoutAnimation />
-					</div>
-					<div className="mt-4">
-						<SharedLayoutAnimation />
-					</div>
-					<div className="mt-4">
-						<LoginLinkButton />
-					</div>
-					<div className="mt-4">
-						<FakeDrawer />
-					</div>
-					<div className="mt-4">
-						<DraggableBall />
-					</div>
-					<div className="mt-4">
-						<DraggableBall2 />
 					</div>
 				</div>
 			</div>
