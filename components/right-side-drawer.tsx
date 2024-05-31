@@ -237,38 +237,6 @@ export function RightSideDrawer() {
 											)}
 										/>
 
-										<FormField
-											control={
-												form.control as unknown as Control<FieldValues>
-											}
-											name="selectedTask"
-											render={({ field }) => (
-												<FormItem>
-													<FormLabel>Tasks</FormLabel>
-													<Select
-														onValueChange={field.onChange}
-														defaultValue={field.value}
-													>
-														<FormControl>
-															<SelectTrigger>
-																<SelectValue placeholder="Select a task..." />
-															</SelectTrigger>
-														</FormControl>
-														<SelectContent>
-															{selectedProject.tasks.map((task) => (
-																<SelectItem
-																	key={task.id}
-																	value={task.name}
-																>
-																	{task.name}
-																</SelectItem>
-															))}
-														</SelectContent>
-													</Select>
-												</FormItem>
-											)}
-										/>
-
 										<SheetFooter className="mt-4">
 											<div className="flex justify-between w-full">
 												<SheetClose asChild>
