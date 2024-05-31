@@ -102,7 +102,9 @@ const projects = [
 
 export function RightSideDrawer() {
 	const [showData, setShowData] = useState(false);
+	const [showTopFooter, setShowTopFooter] = useState(true);
 	const [isSuccess, setIsSuccess] = useState(false);
+	const [sendInvite, setSendInvite] = useState(false);
 	const [selectedProject, setSelectedProject] = useState('');
 	const allowUsers = ['einargudnig@gmail.com', 'user@example.com'];
 
@@ -115,7 +117,7 @@ export function RightSideDrawer() {
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			email: '',
-			selectedProject: ''
+			selectedProject: selectedProject
 		}
 	});
 
@@ -126,8 +128,12 @@ export function RightSideDrawer() {
 			console.log('User can see more data!');
 			setShowData(true);
 			setIsSuccess(true);
+			console.log('values in happy path', { values });
+		} else {
+			console.log('User not found, send him invite');
+			setSendInvite(true);
+			setShowTopFooter(false);
 		}
-		console.log(values);
 	}
 
 	return (
@@ -176,8 +182,22 @@ export function RightSideDrawer() {
 											</p>
 										</div>
 									) : null}
+									{sendInvite ? (
+										<>
+											<div className="mt-4">
+												<p>This user will be sent an invite to sign up.</p>
+											</div>
+											<SheetFooter className="mt-4">
+												<div className="flex justify-start w-full">
+													<SheetClose asChild>
+														<Button>Cancel</Button>
+													</SheetClose>
+												</div>
+											</SheetFooter>
+										</>
+									) : null}
 								</div>
-								{showData ? null : (
+								{showTopFooter ? (
 									<SheetFooter>
 										<div className="flex justify-between w-full">
 											<SheetClose asChild>
@@ -186,65 +206,61 @@ export function RightSideDrawer() {
 											<Button type="submit">Invite user</Button>
 										</div>
 									</SheetFooter>
-								)}
+								) : null}
+
+								{showData ? (
+									<div>
+										<FormField
+											control={
+												form.control as unknown as Control<FieldValues>
+											}
+											name="selectedProject"
+											render={({ field }) => (
+												<FormItem>
+													<FormLabel>Projects</FormLabel>
+													<Select
+														onValueChange={field.onChange}
+														defaultValue={field.value}
+													>
+														<FormControl>
+															<SelectTrigger>
+																<SelectValue placeholder="Select a project..." />
+															</SelectTrigger>
+														</FormControl>
+														<SelectContent>
+															{projects.map((project) => (
+																<SelectItem
+																	key={project.id}
+																	value={project.name}
+																	onSelect={() =>
+																		setSelectedProject(
+																			project.name
+																		)
+																	}
+																>
+																	{project.name}
+																</SelectItem>
+															))}
+														</SelectContent>
+													</Select>
+												</FormItem>
+											)}
+										/>
+
+										<SheetFooter className="mt-4">
+											<div className="flex justify-between w-full">
+												<SheetClose asChild>
+													<Button>Cancel</Button>
+												</SheetClose>
+												<Button type="submit">
+													Invite user to project
+												</Button>
+											</div>
+										</SheetFooter>
+									</div>
+								) : null}
 							</form>
 						</Form>
-						{showData ? (
-							// Add to form!
-							<div>
-								<FormField
-									control={form.control as unknown as Control<FieldValues>}
-									name="selectedProject"
-									render={({ field }) => (
-										<div>
-											<Select>
-												<SelectTrigger>
-													<SelectValue placeholder="Select a project..." />
-												</SelectTrigger>
-												<SelectContent>
-													<SelectGroup>
-														<SelectLabel>Projects</SelectLabel>
-														{projects.map((project, index) => (
-															<SelectItem
-																key={project.id}
-																{...field}
-																value={project.name}
-															>
-																{project.name}
-															</SelectItem>
-														))}
-													</SelectGroup>
-												</SelectContent>
-											</Select>
-										</div>
-									)}
-								/>
-
-								{/* <div>
-									<div>
-										<Select>
-											<SelectTrigger>
-												<SelectValue placeholder="Select a fruit" />
-											</SelectTrigger>
-											<SelectContent>
-												<SelectGroup>
-													<SelectLabel>Fruits</SelectLabel>
-													<SelectItem value="apple">Apple</SelectItem>
-													<SelectItem value="banana">Banana</SelectItem>
-													<SelectItem value="blueberry">
-														Blueberry
-													</SelectItem>
-													<SelectItem value="grapes">Grapes</SelectItem>
-													<SelectItem value="pineapple">
-														Pineapple
-													</SelectItem>
-												</SelectGroup>
-											</SelectContent>
-										</Select>
-									</div>
-								</div> */}
-							</div>
-						) : null}
 					</SheetContent>
 				</Sheet>
 			</div>
