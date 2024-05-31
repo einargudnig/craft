@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-  @layer base {
+@layer base {
 	:root {
 		--flexoki-bg: 48 100% 97%;
 		--flexoki-bg-2: 51 33% 92%;

@@ -14,24 +14,14 @@ import {
 import {
 	Select,
 	SelectContent,
-	SelectGroup,
 	SelectItem,
-	SelectLabel,
 	SelectTrigger,
 	SelectValue
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 
 import { Separator } from './ui/separator';
-import {
-	Form,
-	FormControl,
-	FormDescription,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage
-} from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Control, FieldValues, useForm } from 'react-hook-form';
@@ -70,7 +60,7 @@ const projects = [
 	},
 	{
 		id: 3,
-		name: 'project 2',
+		name: 'project 3',
 		tasks: [
 			{
 				id: 1,
@@ -85,7 +75,7 @@ const projects = [
 	},
 	{
 		id: 4,
-		name: 'project 3',
+		name: 'project 4',
 		tasks: [
 			{
 				id: 1,
@@ -106,6 +96,7 @@ export function RightSideDrawer() {
 	const [isSuccess, setIsSuccess] = useState(false);
 	const [sendInvite, setSendInvite] = useState(false);
 	const [selectedProject, setSelectedProject] = useState('');
+
 	const allowUsers = ['einargudnig@gmail.com', 'user@example.com'];
 
 	const formSchema = z.object({
@@ -122,12 +113,11 @@ export function RightSideDrawer() {
 	});
 
 	function onSubmit(values: z.infer<typeof formSchema>) {
-		// Do something with the form values.
-		// ✅ This will be type-safe and validated.
 		if (allowUsers.includes(values.email)) {
 			console.log('User can see more data!');
 			setShowData(true);
 			setIsSuccess(true);
+			setShowTopFooter(false);
 			console.log('values in happy path', { values });
 		} else {
 			console.log('User not found, send him invite');
@@ -239,6 +229,38 @@ export function RightSideDrawer() {
 																	}
 																>
 																	{project.name}
+																</SelectItem>
+															))}
+														</SelectContent>
+													</Select>
+												</FormItem>
+											)}
+										/>
+
+										<FormField
+											control={
+												form.control as unknown as Control<FieldValues>
+											}
+											name="selectedTask"
+											render={({ field }) => (
+												<FormItem>
+													<FormLabel>Tasks</FormLabel>
+													<Select
+														onValueChange={field.onChange}
+														defaultValue={field.value}
+													>
+														<FormControl>
+															<SelectTrigger>
+																<SelectValue placeholder="Select a task..." />
+															</SelectTrigger>
+														</FormControl>
+														<SelectContent>
+															{selectedProject.tasks.map((task) => (
+																<SelectItem
+																	key={task.id}
+																	value={task.name}
+																>
+																	{task.name}
 																</SelectItem>
 															))}
 														</SelectContent>
