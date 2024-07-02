@@ -18,7 +18,6 @@ export default function Home() {
 				<div className="flex flex-col w-full">
 					<div className="flex justify-between mt-2">
 						<h1 className="md:text-2xl font-bold">Crafting</h1>
-						<ThemeToggle />
 					</div>
 					<div className="my-4 p-4">
 						<p className="text-sm">
