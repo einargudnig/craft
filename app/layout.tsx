@@ -1,8 +1,8 @@
+import { ComponentOverview } from '@/components/component-overview';
+import { ThemeProvider } from '@/components/theme-provider';
+import { GeistSans } from 'geist/font/sans';
 import type { Metadata } from 'next';
 import './globals.css';
-import { GeistSans } from 'geist/font/sans';
-import { BGGrid } from '@/components/bg-grid';
-import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -17,13 +17,12 @@ export default function RootLayout({
 	return (
 		<html lang="en" className={GeistSans.className}>
 			<ThemeProvider attribute="class" defaultTheme="dark">
-				<BGGrid>
-					<body className="antialiased mb-10 lg:mx-auto">
-						<main className="container relative mx-auto mt-8 overflow-auto print:p-12">
-							{children}
-						</main>
-					</body>
-				</BGGrid>
+				<body className="antialiased mb-10 lg:mx-auto">
+					<main className="container relative mx-auto mt-8 overflow-auto print:p-12">
+						<ComponentOverview />
+						{children}
+					</main>
+				</body>
 			</ThemeProvider>
 		</html>
 	);

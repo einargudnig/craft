@@ -1,12 +1,15 @@
 'use client';
 
-import { useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useRef } from 'react';
 
 export function DraggableBall() {
 	const boundingBox = useRef(null);
 	return (
 		<div className="border border-1 rounded-md bg-black/60">
+			<div className="sticky pl-2 pt-1">
+				<p className="text-xs text-muted-foreground">Animations on the web #6</p>
+			</div>
 			<div ref={boundingBox} className="w-full h-48 flex justify-center items-center">
 				<motion.div
 					drag

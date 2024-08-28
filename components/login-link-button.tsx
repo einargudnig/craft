@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useState } from 'react';
 
 export function LoginLinkButton() {
 	const [buttonState, setButtonState] = useState('idle');
@@ -15,6 +15,9 @@ export function LoginLinkButton() {
 
 	return (
 		<div className="border border-1 rounded-md bg-black/60">
+			<div className="sticky pl-2 pt-1">
+				<p className="text-xs text-muted-foreground">Animations on the web #4</p>
+			</div>
 			<div className="w-full h-48 flex justify-center items-center">
 				<button
 					disabled={buttonState === 'loading'}

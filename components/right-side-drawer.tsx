@@ -1,16 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import {
-	Sheet,
-	SheetClose,
-	SheetContent,
-	SheetDescription,
-	SheetFooter,
-	SheetHeader,
-	SheetTitle,
-	SheetTrigger
-} from '@/components/ui/sheet';
+import { Input } from '@/components/ui/input';
 import {
 	Select,
 	SelectContent,
@@ -18,14 +9,23 @@ import {
 	SelectTrigger,
 	SelectValue
 } from '@/components/ui/select';
-import { Input } from '@/components/ui/input';
+import {
+	Sheet,
+	SheetClose,
+	SheetContent,
+	SheetFooter,
+	SheetHeader,
+	SheetTitle,
+	SheetTrigger
+} from '@/components/ui/sheet';
+// import { Toast,  } from './ui/toast';
 
-import { Separator } from './ui/separator';
 import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Control, FieldValues, useForm } from 'react-hook-form';
 import { useState } from 'react';
+import { Control, FieldValues, useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { Separator } from './ui/separator';
 
 const projects = [
 	{
@@ -126,8 +126,16 @@ export function RightSideDrawer() {
 		}
 	}
 
+	// trigger a toast after 2 seconds with email send text. close the drawer
+	function sendEmail() {
+		setTimeout(() => console.log('timer'), 1000);
+	}
+
 	return (
 		<div className="border border-1 rounded-md bg-black/60">
+			<div className="sticky pl-2 pt-1">
+				<p className="text-xs text-muted-foreground">Drawer #1</p>
+			</div>
 			<div className="w-full h-48 flex justify-center items-center">
 				<Sheet>
 					<SheetTrigger asChild>
@@ -138,10 +146,7 @@ export function RightSideDrawer() {
 							<form onSubmit={form.handleSubmit(onSubmit)}>
 								<SheetHeader>
 									<SheetTitle>Invite stakeholder</SheetTitle>
-									<SheetDescription>
-										Invite your stakeholder to the project. If he does not have
-										an account you can send him an invite
-									</SheetDescription>
+
 									<Separator />
 								</SheetHeader>
 								<div className="mb-6 mt-4">
@@ -155,6 +160,7 @@ export function RightSideDrawer() {
 													<FormControl>
 														<Input
 															placeholder="stakeholder@example.com"
+															type="email"
 															{...field}
 														/>
 													</FormControl>
@@ -174,14 +180,19 @@ export function RightSideDrawer() {
 									) : null}
 									{sendInvite ? (
 										<>
-											<div className="mt-4">
-												<p>This user will be sent an invite to sign up.</p>
+											<div className="mt-6">
+												<p className="text-sm">
+													The user you searched for was not found. Do you
+													want to send him an email and invite him to
+													create an account?
+												</p>
 											</div>
-											<SheetFooter className="mt-4">
-												<div className="flex justify-start w-full">
+											<SheetFooter className="mt-6">
+												<div className="flex justify-between w-full">
 													<SheetClose asChild>
-														<Button>Cancel</Button>
+														<Button variant={'outline'}>Cancel</Button>
 													</SheetClose>
+													<Button>Send email</Button>
 												</div>
 											</SheetFooter>
 										</>
@@ -191,9 +202,9 @@ export function RightSideDrawer() {
 									<SheetFooter>
 										<div className="flex justify-between w-full">
 											<SheetClose asChild>
-												<Button>Cancel</Button>
+												<Button variant={'outline'}>Cancel</Button>
 											</SheetClose>
-											<Button type="submit">Invite user</Button>
+											<Button type="submit">Search for user</Button>
 										</div>
 									</SheetFooter>
 								) : null}
@@ -240,11 +251,13 @@ export function RightSideDrawer() {
 										<SheetFooter className="mt-4">
 											<div className="flex justify-between w-full">
 												<SheetClose asChild>
-													<Button>Cancel</Button>
+													<Button variant={'outline'}>Cancel</Button>
 												</SheetClose>
-												<Button type="submit">
-													Invite user to project
-												</Button>
+												{selectedProject ? (
+													<Button type="submit">
+														Invite user to project
+													</Button>
+												) : null}
 											</div>
 										</SheetFooter>
 									</div>

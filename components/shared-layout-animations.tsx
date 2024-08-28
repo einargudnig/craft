@@ -1,13 +1,15 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from './ui/button';
+import { useState } from 'react';
 
 export function SharedLayoutAnimation() {
 	const [showSecond, setShowSecond] = useState(false);
 	return (
 		<div className="border border-1 rounded-md bg-black/60">
+			<div className="sticky pl-2 pt-1">
+				<p className="text-xs text-muted-foreground">Animations on the web #3</p>
+			</div>
 			<div className="w-full h-48 flex justify-center items-center">
 				<div className="mx-4 flex flex-col items-center">
 					<motion.button

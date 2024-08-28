@@ -9,6 +9,9 @@ export function DraggableBall2() {
 
 	return (
 		<div className="border border-1 rounded-md bg-black/60">
+			<div className="sticky pl-2 pt-1">
+				<p className="text-xs text-muted-foreground">Animations on the web #7</p>
+			</div>
 			<div className="w-full h-48 flex justify-center items-center">
 				<motion.div
 					onPan={(_, info) => {

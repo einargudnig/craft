@@ -1,9 +1,9 @@
 'use client';
 
-import { Button } from './ui/button';
 import { motion } from 'framer-motion';
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import useMeasure from 'react-use-measure';
+import { Button } from './ui/button';
 
 export function FakeDrawer() {
 	const [showExtraContent, setShowExtraContent] = useState(false);
@@ -11,6 +11,9 @@ export function FakeDrawer() {
 
 	return (
 		<div className="border border-1 rounded-md bg-black/60">
+			<div className="sticky pl-2 pt-1">
+				<p className="text-xs text-muted-foreground">Animations on the web #5</p>
+			</div>
 			<div className="w-full h-[384px] flex justify-center items-center">
 				<div className="flex flex-col items-center justify-start">
 					<Button variant="outline" onClick={() => setShowExtraContent((b) => !b)}>
