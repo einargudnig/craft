@@ -21,6 +21,18 @@ export function ComponentOverview() {
 								text="Family's fluid bottom"
 							/>
 						</li>
+						<li>
+							<ListItemWithLink
+								href="https://x.com/jakubkrehel/status/1808910242173866282"
+								text="Shared Layout animations"
+							/>
+						</li>
+						<li>
+							<ListItemWithLink
+								href="https://x.com/nitishkmrk/status/1800462001782829213"
+								text="Widget"
+							/>
+						</li>
 					</ul>
 					<ul className="text-sm"></ul>
 				</div>
