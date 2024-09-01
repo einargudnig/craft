@@ -18,7 +18,11 @@ export default function Home() {
 						<h1 className="md:text-2xl font-bold">Craft</h1>
 					</div>
 					<div className="my-4 p-4">
-						<p className="text-sm italic">Craft. The notion of doing things well.</p>
+						<p className="text-sm italic">
+							<span className="font-semibold">Craft. </span>
+							The notion of doing things well, spend time building things, improve
+							your skills, and learn new things.
+						</p>
 					</div>
 
 					{/* <div className="mt-4">
