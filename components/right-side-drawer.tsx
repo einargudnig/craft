@@ -128,7 +128,11 @@ export function RightSideDrawer() {
 
 	// trigger a toast after 2 seconds with email send text. close the drawer
 	function sendEmail() {
-		setTimeout(() => console.log('timer'), 1000);
+		// trigger a loading state to show when true
+		// TODO add loading state to the shadcn abstraction.
+		// figure out where to find a loading icon → radix icons or lucide
+		setTimeout(() => alert('You have sent email!'), 1000);
+		// close the drawer
 	}
 
 	return (
@@ -192,7 +196,7 @@ export function RightSideDrawer() {
 													<SheetClose asChild>
 														<Button variant={'outline'}>Cancel</Button>
 													</SheetClose>
-													<Button>Send email</Button>
+													<Button onClick={sendEmail}>Send email</Button>
 												</div>
 											</SheetFooter>
 										</>
